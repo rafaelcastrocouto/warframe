@@ -1,0 +1,4 @@
+site['Foundry'] = {
+  'Blueprints': {},
+  'Resources': {}
+}
