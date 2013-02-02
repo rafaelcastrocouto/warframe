@@ -104,6 +104,7 @@ site.create('div', {
 });
 
 site.css.addRule('.news_alerts', {
+  'display': 'none',
   'text-align': 'left',
   'font': '14px "pixel"',
   'width': '200px',
@@ -119,6 +120,7 @@ site.system = {
       id: 'system',
       parent: home,
       style: {
+        'display': 'none',
         'position': 'relative',
         'top': '200px',
         '-webkit-transform-style': 'preserve-3d'
