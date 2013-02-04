@@ -22,54 +22,51 @@ site.create('div', {
 
 var menu = home.children.menu;
 
-
-site.create('button', {
+site.create('div', {
   id: 'back',
-  className: 'grey',
+  className: 'grey button',
   parent: menu,
   textContent: 'HOME'
 });
 
-site.create('button', {
+site.create('div', {
   id: 'links',
-  className: 'grey',
+  className: 'grey button',
   parent: menu,
   textContent: 'LINKS'
 });
 
-site.create('button', {
+site.create('div', {
   id: 'guides',
-  className: 'grey',
+  className: 'grey button',
   parent: menu,
   textContent: 'GUIDES'
 });
 
-
-site.create('button', {
+site.create('div', {
   id: 'online',
-  className: 'blue',
+  className: 'blue button',
   parent: menu,
   textContent: 'ONLINE'
 });
 
-site.create('button', {
+site.create('div', {
   id: 'arsenal',
-  className: 'grey',
+  className: 'grey button',
   parent: menu,
   textContent: 'ARSENAL'
 });
 
-site.create('button', {
+site.create('div', {
   id: 'missions',
-  className: 'grey',
+  className: 'grey button',
   parent: menu,
   textContent: 'MISSIONS'
 });
 
-
-site.create('button', {
+site.create('div', {
   id: 'foundry',
-  className: 'grey',
+  className: 'grey button',
   parent: menu,
   textContent: 'FOUNDRY'
 });
@@ -89,7 +86,7 @@ site.create('div', {
 });
 
 site.create('div', {
-  id: 'desciption',
+  id: 'description',
   className: 'grey_blue',
   parent: home,
   textContent: 'Description',
@@ -99,7 +96,7 @@ site.create('div', {
     'right': '50px',
     'width': '200px',
     'top': '100px',
-    'display': 'none'
+    'opacity': '0'
   }
 });
 
@@ -115,6 +112,7 @@ site.system = {
   current: 'Sol',
   render: function(system){
     var home = document.body.children.home;
+
     site.create('div', {
       id: 'system',
       parent: home,
@@ -124,9 +122,11 @@ site.system = {
         '-webkit-transform-style': 'preserve-3d'
       }
     });
+
     var system = home.children.system;
     var system_name = site.system.current;
     var r = 25;
+
     site.system.nucleus = site.create('div', {
       id: 'Nucleus',
       parent: system,
@@ -144,12 +144,29 @@ site.system = {
         'box-shadow': '0px 0px 50px #fca, 0px 0px 100px #fca'
       }
     });
+    site.create('div', {
+      id: 'Nucleus_light',
+      parent: system,
+      style: {
+        'position': 'absolute',
+        'margin': '0',
+        'height': '4px',
+        'width': '998px',
+      //  'margin-left': (250-r)+'px',
+        'top': '10px',
+        'border-radius': '100% 100%',
+        'background': 'rgba( 255, 255, 165, 0.25)',
+        'box-shadow': '0px 0px 50px #fff48f, 0px 0px 100px white, 0px 0px 150px white, 0px 0px 200px white'
+      }
+    });
     var planets = site['Missions']['Systems'][system_name]['Planets'];
     var i = 0;
+
     for(var name in planets){ ++i;
       var planet = planets[name]; 
       var o = planet['Orbit'];
       r = planet['Radius'];
+
       site.create('div', {
         id: name+'_orbit',
         className: 'planet_orbit',
@@ -161,7 +178,8 @@ site.system = {
           'height': r+'px'
         }
       });  
-      site.create('div', {
+
+      planet.el = site.create('div', {
         id: name,
         className: 'planet',
         parent: system.children[name+'_orbit'],
@@ -180,11 +198,24 @@ site.system = {
         }
       });
 
+      site.create('div', {
+        id: name+'_hover',
+        className: 'planet_hover',
+        parent: planet.el,
+        style:{
+          'height': (2*r)+'px',
+          'width': (2*r)+'px',
+          'border-radius': r+'px',
+          'display': 'none',
+          '-webkit-animation': name+'HoverLoop 0.5s linear infinite alternate'  
+        }
+      });
+
       site.css.addRule('#'+name+'_orbit', {
         '-webkit-transform-origin-y':        '-400px',
         '-webkit-transform-style':           'preserve-3d',
         '-webkit-animation-name':            'orbitLoop',
-        '-webkit-animation-duration':         i*40+'s',
+        '-webkit-animation-duration':         i*60+'s',
         '-webkit-animation-iteration-count': 'infinite',
         '-webkit-animation-timing-function': 'linear',
         '-webkit-animation-delay': (r*-5)+'s'
@@ -193,17 +224,34 @@ site.system = {
       site.css.addRule('#'+name, {
         '-webkit-backface-visibility':       'hidden',
         '-webkit-animation-name':            'planetLoop, bkgLoop',
-        '-webkit-animation-duration':         i*40+'s, 200s',
+        '-webkit-animation-duration':         i*60+'s, 200s',
         '-webkit-animation-iteration-count': 'infinite',
         '-webkit-animation-timing-function': 'linear',
         '-webkit-animation-delay': (r*-5)+'s'
       }); 
 
-      site.css.addRule('#'+name+':hover', {
-          'box-shadow': '0px 0px '+(r)+'px white, ' +
-                        '0px -'+(r/8)+'px '+(r/4)+'px rgba(255, 255, 250, 0.4) inset, ' +
-                        '0px '+(r)+'px '+(r)+'px rgba(0, 0, 0, 0.8) inset' 
+      site.css.addRule('#'+name+':hover > div', {
+        'display': 'block'
       });
+
+      site.css.animation.add([
+        '@-webkit-keyframes '+ name +'HoverLoop {',
+        '  from { box-shadow: 0px 0px 10px white; }',
+        '  to   { box-shadow: 0px 0px '+(10+2*r)+'px white; }',
+        '}'].join('\n')
+      );
+
+      var description = home.children.description;
+
+      planet.el.on('mouseover', function(){
+        description.style.opacity = '1';
+        var pl = planets[this.id];
+        description.textContent = this.id + ': '+  pl.Description;
+      });
+      planet.el.on('mouseout', function(){
+        description.style.opacity = '0';
+      });
+
     }
   }
 };
@@ -211,7 +259,9 @@ site.system = {
 site.system.render(site.system.current);
 
 site.css.animation.add([
-
+  '#description{',
+  '  -webkit-transition: opacity 1s',
+  '}',
   '@-webkit-keyframes orbitLoop {',
   '  from { -webkit-transform: perspective(1000px) rotateY(0deg);}',
   '  to   { -webkit-transform: perspective(1000px) rotateY(360deg); }',

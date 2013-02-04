@@ -18,91 +18,70 @@ site.css.addRule('body',{
   'font-family': '"Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif',
 });
 
-site.css.addRule('button', {
+site.css.addRule('.button', {
   'color': 'white',
-  'margin':  '5px',
-  'text-shadow': '3px 2px black',
-  'cursor': 'pointer'
+  'cursor': 'pointer',
+  'vertical-align': 'middle'
 });
 site.css.addRule('button[DISABLED]', {
   'cursor': 'default'
 });
 
 /* BLUE */
-var color1 = '#0b479c',
-    color2 = '#109be6',
-    color3 = '#47d4ff',
-    color4 = 'rgba( 15, 155, 235, 0.9)';
 site.css.addRule('.blue', {
-  'font': '21px/22px sans-serif',
-  'background-color': color2,
-  'box-shadow':  '0px 0px 45px ' + color4 + ',' +
-                 '0px -15px 35px ' + color1 + ' inset,'+ 
-                 '0px 2px 6px ' + color3 + ' inset',
-  'border-radius': '10px',
-  'padding': '8px',
-  'margin': '16px',
+  'font': '21px sans-serif',
+  'text-shadow': '0px 2px 0px rgba(0,0,0,0.4)',
+  'background': '#308cca',
+  'background-image': '-webkit-linear-gradient(top,#169af7,#0c56ab)',
+  'box-shadow':  '0px 0px 15px 0px rgba(0,153,255,1), inset 0px 1px 0px rgba(255,255,255,0.5)',
+  'padding': '6px',
+  'margin': '12px',
   'width': '200px',
+  'display': 'inline-block'
 });
 site.css.addRule('.blue', {
-  'border': '2px solid ' + color4 
+  'border-radius': '4px',
+  'border': '1px solid #4eb3f2' 
 }, 'fixscale');
 
 site.css.addRule('.blue[DISABLED]', {
   'color': '#ccc',
 });
 site.css.addRule('.blue:hover:not([DISABLED])', {
-  'background-color': color2,
-  'box-shadow': '0px 0px 60px ' + color4 + ',' +
-                '0px -5px 25px ' + color1 + ' inset,' +
-                '0px 2px 8px white inset',
+  'box-shadow':  '0px 0px 25px 0px rgba(50,203,255,1), inset 0px 5px 25px rgba(255,255,255,0.5)'
 });
 
 site.css.addRule('.blue:active:not([DISABLED])', {
-  'background-color': color1,
-  'box-shadow': '0px 10px 45px ' + color1 + ',' +
-                '0px 30px 35px ' + color2 + ' inset,' +
-                '0px 0px 2px ' + color3 + ' inset',
-  'text-shadow': '-3px -2px black'
+  'box-shadow':  '0px 0px 15px 0px rgba(0,153,255,1), inset 0px 1px 0px rgba(255,255,255,0.5)',
+  'text-shadow': '-3px -2px rgba(0,0,0,0.4)'
 });
 
 /* GREY */
-color1 = '#0c0d0a',
-color2 = '#404242',
-color3 = '#676767',
-color4 = 'rgba( 61, 66, 66, 0.9)';
-
 site.css.addRule('.grey', {
-  'font': '15px/16px sans-serif',
-  'color': '#ddd',
-  'background-color': color2,
-  'box-shadow':  '0px 0px 45px ' + color4 + ',' +
-                 '0px -5px 25px ' + color1 + ' inset,'+ 
-                 '0px 2px 6px ' + color3 + ' inset',
-  'border-radius': '6px',
+  'font': '16px sans-serif',
+  'text-shadow': '0px 2px 0px rgba(0,0,0,0.4)',
+  'background': '#cacaca',
+  'background-image': '-webkit-linear-gradient(top,#444,#111)',
   'padding': '6px',
+  'margin': '4px',
   'width': '100px',
+  'display': 'inline-block'
 });
 site.css.addRule('.grey', {
-  'border': '2px solid ' + color4 
+  'border-radius': '4px',
+  'border': '1px solid #666' 
 }, 'fixscale');
 
 site.css.addRule('.grey[DISABLED]', {
   'color': '#ccc',
 });
 site.css.addRule('.grey:hover:not([DISABLED])', {
-  'background-color': color2,
-  'box-shadow': '0px 0px 45px ' + color4 + ',' +
-                '0px -5px 25px ' + color1 + ' inset,' +
-                '0px 0px 6px white inset',
+  'box-shadow':  '0px 0px 25px 0px rgba(100,100,100,1), inset 0px 5px 25px rgba(255,255,255,0.3)'
 });
 
 site.css.addRule('.grey:active:not([DISABLED])', {
-  'background-color': color1,
-  'box-shadow': '0px 10px 45px ' + color1 + ',' +
-                '0px 30px 35px ' + color3 + ' inset,' +
-                '0px 0px 2px ' + color4 + ' inset',
-  'text-shadow': '-3px -2px black'
+  'box-shadow':  '0px 0px 10px rgba(255,255,255,0.4)',
+  'text-shadow': '-3px -2px rgba(0,0,0,0.4)'
 });
 
 site.css.addRule('.grey_blue', {
@@ -110,7 +89,7 @@ site.css.addRule('.grey_blue', {
   'box-shadow': '0 0 0 4px black,'+
                 '0 0 0 5px #1a9ce8',
   'border': '1px solid #444',
-  'border-radius': '5px',
+  'border-radius': '4px',
   'padding': '5px'
 }, 'fixscale');
 
